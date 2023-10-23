@@ -47,8 +47,12 @@ ion-input,ion-input:focus{
     --highlight-color-invalid:none !important;
     --highlight-color-valid:none !important;
     --highlight-height: 0px !important;
-    --border-color: none !important;
-    
+    --border-color: none !important;   
+}
+
+ion-item{
+    --background: transparent;
+    height: 48px;
 }
 
 input{
