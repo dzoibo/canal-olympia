@@ -30,3 +30,11 @@ swiper-slide {
   .shadown-down{
     box-shadow: 0px 16px 40px 0px rgba(7, 9, 13, 0.25);
   }
+  #modal-container{
+    transition-duration: 4ms;
+    transition-property: height;
+  }
+  .bottom-action-transition{
+    transition: height 3s ease 1s;
+
+  }

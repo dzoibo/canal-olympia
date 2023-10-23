@@ -9,7 +9,11 @@ register();
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  bottomModal='';
   constructor() {}
+
+  displayLogin(){
+    this.bottomModal='login';
+  }
 
 }

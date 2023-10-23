@@ -22,7 +22,7 @@
         </svg>
         <ion-text class="font-semibold cursor-pointer">Eng</ion-text>
       </div>
-      <button class="success-shadow ml-3 w-[76px] h-[40px] button-primary font-bold text-sm"> Log in </button>
+      <button class="success-shadow ml-3 w-[76px] h-[40px] button-primary rounded-lg font-bold text-sm" (click)="displayLogin()"> Log in </button>
    </div>
 
   </ion-header>
@@ -203,7 +203,7 @@
       </div>
       <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
         <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-[8px] shadown-down ">
+          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               02h08
             </ion-label>
@@ -215,7 +215,7 @@
           </div>
         </div>
         <div class="relative h-[280px] shadown-down ">
-          <div class="overflow-hidden top-0  mb-2 rounded-[8px] ">
+          <div class="overflow-hidden top-0  mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               01h57
             </ion-label>
@@ -227,7 +227,7 @@
           </div>
         </div>
         <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-[8px] shadown-down ">
+          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               02h06
             </ion-label>
@@ -239,7 +239,7 @@
           </div>
         </div>
         <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0 mb-2 rounded-[8px] ">
+          <div class="overflow-hidden top-0 mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               01h30
             </ion-label>
@@ -251,7 +251,7 @@
           </div>
         </div>
         <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-[8px] shadown-down ">
+          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               02h08
             </ion-label>
@@ -263,7 +263,7 @@
           </div>
         </div>
         <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-[8px] shadown-down ">
+          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               02h08
             </ion-label>
@@ -276,6 +276,57 @@
         </div>
       </div>
     </div>
+  </div>
+  <div [ngClass]="bottomModal!==''?'h-screen':'h-0'" class="bg-black/[75%] w-screen overflow-hidden fixed  z-50 inset-0">
+      
+    <div [ngClass]="bottomModal==='login'?'h-auto':'h-0'" class="hidden bottom-action-transition rounded items-center p-4 w-full overflow-hidden rounded-t-lg flex flex-col">
+      <ion-label class="text-2xl font-bold w-full text-center">Login</ion-label>
+      <ion-label class="text-[#637394] mt-2 mb-4 text-base text-center">Enter the password from the sms</ion-label>
+      <ion-label class="text-white text-base font-thin flex justify-center gap-x-2">
+        <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg flex justify-center items-center" value="9"></ion-input>
+        <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value="7"></ion-input>
+        <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
+        <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
+      </ion-label>
+      <button class="rounded-lg mt-2.5 mb-4 text-white success-shadow w-[343px] h-14 text-lg button-primary" > Login </button>
+      <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center">Change number</button>
+      <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center mb-4">Resend (0:59)</button>
+    </div>
+
+    <div class=" bg-[#0A1445] absolute bottom-0 text-white p-4 rounded-lg w-screen">
+      <div class=" border border-solid border-[#6d9eff1a] py-3 pl-3 pr-4 flex h-14 w-full mb-4 rounded-lg flex items-center">
+          <svg class="mr-[12px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M10.25 3C6.25778 3 3 6.25778 3 10.25C3 14.2422 6.25778 17.5 10.25 17.5C11.8866 17.5 13.3945 16.9465 14.6104 16.0254L19.293 20.707C19.3851 20.803 19.4955 20.8796 19.6176 20.9324C19.7397 20.9852 19.8712 21.0131 20.0042 21.0144C20.1373 21.0158 20.2692 20.9906 20.3924 20.9403C20.5156 20.89 20.6275 20.8157 20.7216 20.7216C20.8157 20.6275 20.89 20.5156 20.9403 20.3924C20.9906 20.2692 21.0158 20.1373 21.0144 20.0042C21.0131 19.8712 20.9852 19.7397 20.9324 19.6176C20.8796 19.4955 20.803 19.3851 20.707 19.293L16.0254 14.6104C16.9465 13.3945 17.5 11.8866 17.5 10.25C17.5 6.25778 14.2422 3 10.25 3ZM10.25 5C13.1613 5 15.5 7.33866 15.5 10.25C15.5 11.6479 14.957 12.9103 14.0742 13.8486C13.9883 13.9108 13.9128 13.9863 13.8506 14.0723C12.9121 14.9562 11.6489 15.5 10.25 15.5C7.33866 15.5 5 13.1613 5 10.25C5 7.33866 7.33866 5 10.25 5Z" fill="#637394"/>
+          </svg>
+          <ion-input class="grow" placeholder="Search" > </ion-input>
+      </div>
+      
+        <ion-item><ion-text>REBERO, Kigali Rwanda</ion-text> </ion-item>
+        <ion-item><ion-text>Yaoundé 1, Yaoundé Cameroun</ion-text> </ion-item>
+        <ion-item><ion-text>Bessengue, Douala Cameroun°</ion-text> </ion-item>
+        <ion-item><ion-text>WOLOGUEDE, Cotonou BENIN</ion-text> </ion-item>
+        <ion-item><ion-text>POPO, Braazaville Congo</ion-text> </ion-item>
+        <ion-item><ion-text>KALOUM, Conakry Guinée</ion-text> </ion-item>
+        <ion-item><ion-text>GOGOPE, Lomé Togo</ion-text> </ion-item>
+        <ion-item><ion-text>MIDE, Lomé Togo</ion-text> </ion-item>
+        <ion-item lines="none"><ion-text>Teranga, Dakar Sénégal</ion-text> </ion-item>
+    </div>
+
+    <div class="text-white rounded-lg p-4 hidden">
+      <ion-list>
+        <ion-item ><ion-icon></ion-icon><ion-text>Français</ion-text></ion-item>
+        <ion-item lines="none" ><ion-icon></ion-icon><ion-text>English</ion-text></ion-item>
+      </ion-list>
+    </div>
+
+    <div class=" hidden">
+      <ion-list>
+        <ion-item><ion-text>Time</ion-text></ion-item>
+        <ion-item><ion-text>Distance</ion-text></ion-item>
+        <ion-item lines="none"><ion-text>Price</ion-text></ion-item>
+      </ion-list>
+    </div>
+
   </div>
 </div>
 
