@@ -37,6 +37,9 @@
     justify-content: center;
     font-family: 'Sora',sans-serif;
     font-weight: 700;  
+    &:disabled{
+        opacity: 80%;
+    }
 }
 
 .success-shadow{

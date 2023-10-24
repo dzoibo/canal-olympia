@@ -7,11 +7,11 @@
         <img src="../../assets/images/olympia-logo.png" class="h-full w-full success-shadow" alt="canal-olympia-logo">
       </div>
 
-      <div (click)="displaySearch()" class="flex items-center ml-3">
+      <div (click)="displaySearch()" class="flex cursor-pointer items-center ml-3">
         <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C7.313 2 3.5 5.813 3.5 10.5C3.5 12.518 4.2245 14.4765 5.5465 16.024C5.6975 16.1955 9.26 20.2435 10.45 21.378C10.8845 21.7925 11.442 22 12 22C12.558 22 13.1155 21.7925 13.5505 21.378C14.934 20.0585 18.3125 16.1855 18.4605 16.0155C19.7755 14.4765 20.5 12.518 20.5 10.5C20.5 5.813 16.687 2 12 2ZM12 13C10.6195 13 9.5 11.8805 9.5 10.5C9.5 9.1195 10.6195 8 12 8C13.3805 8 14.5 9.1195 14.5 10.5C14.5 11.8805 13.3805 13 12 13Z" fill="#637394"/>
         </svg>
-        <ion-text class="font-semibold">Bessengue</ion-text>
+        <ion-text class="font-semibold capitalize">{{selectedLocation.name.split(',')[0]}}</ion-text>
       </div>
     </div>
 
@@ -47,45 +47,14 @@
     </div>
     <div class="pl-4">
       <swiper-container [slidesPerView]="" [loop]="true">
-        <swiper-slide>
-          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden">
-            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" src="../../assets/images/movies/01paw Patrol.png" alt="">
-    
-            <div class="bg-black/[0.3] rounded-[45.5px] w-9 h-9 flex justify-center items-center absolute top-2 right-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                <path d="M3.36362 10.4744C3.36362 9.72125 3.97414 9.11073 4.72725 9.11073H6.09089L10.6828 4.76995C11.0088 4.46173 11.5454 4.69288 11.5454 5.14156V17.7674C11.5454 18.2161 11.0088 18.4472 10.6828 18.139L6.09089 13.7982H4.72725C3.97414 13.7982 3.36362 13.1877 3.36362 12.4346V10.4744Z" fill="white"/>
-                <path d="M19.0454 8.72725L16.3182 11.4545M13.5909 14.1818L16.3182 11.4545M16.3182 11.4545L19.0454 14.1818M16.3182 11.4545L13.5909 8.72725" stroke="white" stroke-width="2.04545"/>
-              </svg>
-            </div>
-            <div class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
-                <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
-              </svg>
-            </div>
-            <div class="w-full h-[234px] absolute bottom-0 dark-bottom ">
-    
-            </div>
-            <div class="z-20 width-fit ml-4 mb-4">
-              <div class="text-2xl text-left mt-1 font-bold">
-                <ion-text class="text-[#EFEFF1]">Paw Patrol</ion-text>
-              </div>
-              <div class="font-semibold text-[#BF94FF] text-[11px] flex" >
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Français </div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center" >Enquéte</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Animé</div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden">
-            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" src="../../assets/images/movies/trolls" alt="image cover">
-    
+        <swiper-slide *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
+          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
+            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" [src]="movie.url" [alt]="movie.name+' cover' ">
             <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <circle cx="4.58481" cy="5.26919" r="4.54452" fill="#EB0400"/>
               </svg>
-              <ion-label class="text-xs font-normal" >10.2k</ion-label>
+              <ion-label class="text-xs font-normal" >{{movie.resolution}}</ion-label>
             </div>
 
             <div class="bg-black/[0.3] rounded-[45.5px] w-9 h-9 flex justify-center items-center absolute top-2 right-2">
@@ -99,179 +68,42 @@
                 <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
               </svg>
             </div>
-            <div class="w-full h-[234px] absolute bottom-0 dark-bottom ">
-    
-            </div>
+            <div class="w-full h-[234px] absolute bottom-0 dark-bottom "></div>
             <div class="z-20 width-fit ml-4 mb-4">
               <div class="text-2xl text-left font-bold mb-1">
-                <ion-text class="text-[#EFEFF1]">Les trolls 3</ion-text>
+                <ion-text class="text-[#EFEFF1]" >{{movie.name}}</ion-text>
               </div>
               <div class="font-semibold text-[#BF94FF] text-[11px] flex" >
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Français p</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center" >Enquete</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Peur</div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden">
-            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" src="../../assets/images/movies/sira" alt="image cover">
-    
-            <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <circle cx="4.58481" cy="5.26919" r="4.54452" fill="#EB0400"/>
-              </svg>
-              <ion-label class="text-xs font-normal" >10.2k</ion-label>
-            </div>
-
-            <div class="bg-black/[0.3] rounded-[45.5px] w-9 h-9 flex justify-center items-center absolute top-2 right-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                <path d="M3.36362 10.4744C3.36362 9.72125 3.97414 9.11073 4.72725 9.11073H6.09089L10.6828 4.76995C11.0088 4.46173 11.5454 4.69288 11.5454 5.14156V17.7674C11.5454 18.2161 11.0088 18.4472 10.6828 18.139L6.09089 13.7982H4.72725C3.97414 13.7982 3.36362 13.1877 3.36362 12.4346V10.4744Z" fill="white"/>
-                <path d="M19.0454 8.72725L16.3182 11.4545M13.5909 14.1818L16.3182 11.4545M16.3182 11.4545L19.0454 14.1818M16.3182 11.4545L13.5909 8.72725" stroke="white" stroke-width="2.04545"/>
-              </svg>
-            </div>
-            <div class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
-                <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
-              </svg>
-            </div>
-            <div class="w-full h-[234px] absolute bottom-0 dark-bottom ">
-    
-            </div>
-            <div class="z-20 width-fit ml-4 mb-4">
-              <div class="text-2xl text-left font-bold mb-1">
-                <ion-text class="text-[#EFEFF1]">SIRA</ion-text>
-              </div>
-              <div class="font-semibold text-[#BF94FF] text-[11px] flex" >
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Français p</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center" >Enquete</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Peur</div>
-              </div>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden">
-            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" src="../../assets/images/movies/Imagefive night.png" alt="image cover">
-    
-            <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <circle cx="4.58481" cy="5.26919" r="4.54452" fill="#EB0400"/>
-              </svg>
-              <ion-label class="text-xs font-normal" >10.2k</ion-label>
-            </div>
-
-            <div class="bg-black/[0.3] rounded-[45.5px] w-9 h-9 flex justify-center items-center absolute top-2 right-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                <path d="M3.36362 10.4744C3.36362 9.72125 3.97414 9.11073 4.72725 9.11073H6.09089L10.6828 4.76995C11.0088 4.46173 11.5454 4.69288 11.5454 5.14156V17.7674C11.5454 18.2161 11.0088 18.4472 10.6828 18.139L6.09089 13.7982H4.72725C3.97414 13.7982 3.36362 13.1877 3.36362 12.4346V10.4744Z" fill="white"/>
-                <path d="M19.0454 8.72725L16.3182 11.4545M13.5909 14.1818L16.3182 11.4545M16.3182 11.4545L19.0454 14.1818M16.3182 11.4545L13.5909 8.72725" stroke="white" stroke-width="2.04545"/>
-              </svg>
-            </div>
-            <div class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
-                <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
-              </svg>
-            </div>
-            <div class="w-full h-[234px] absolute bottom-0 dark-bottom ">
-    
-            </div>
-            <div class="z-20 width-fit ml-4 mb-4">
-              <div class="text-2xl text-left font-bold mb-1">
-                <ion-text class="text-[#EFEFF1]">Five Nights</ion-text>
-              </div>
-              <div class="font-semibold text-[#BF94FF] text-[11px] flex" >
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Français p</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center" >Enquete</div>
-                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">Peur</div>
+                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">{{movie.language}} </div>
+                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center" >{{movie.category}} </div>
+                <div class="px-[7.21px] h-5 mr-[8px] bg-[#BF94FF]/[8%] rounded-[8182px] flex items-center">{{movie.type}}</div>
               </div>
             </div>
           </div>
         </swiper-slide>
       </swiper-container>
-      
-
     </div>
+
     <div class="px-4">
       <div class=" flex justify-between font-bold items-center my-[23px]">
         <ion-text class="text-white text-xl">
-          Seminaire du 17-23 Oct 
+          Semaine du 23-29 Oct 
         </ion-text>
         <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M10.25 3C6.25778 3 3 6.25778 3 10.25C3 14.2422 6.25778 17.5 10.25 17.5C11.8866 17.5 13.3945 16.9465 14.6104 16.0254L19.293 20.707C19.3851 20.803 19.4955 20.8796 19.6176 20.9324C19.7397 20.9852 19.8712 21.0131 20.0042 21.0144C20.1373 21.0158 20.2692 20.9906 20.3924 20.9403C20.5156 20.89 20.6275 20.8157 20.7216 20.7216C20.8157 20.6275 20.89 20.5156 20.9403 20.3924C20.9906 20.2692 21.0158 20.1373 21.0144 20.0042C21.0131 19.8712 20.9852 19.7397 20.9324 19.6176C20.8796 19.4955 20.803 19.3851 20.707 19.293L16.0254 14.6104C16.9465 13.3945 17.5 11.8866 17.5 10.25C17.5 6.25778 14.2422 3 10.25 3ZM10.25 5C13.1613 5 15.5 7.33866 15.5 10.25C15.5 11.6479 14.957 12.9103 14.0742 13.8486C13.9883 13.9108 13.9128 13.9863 13.8506 14.0723C12.9121 14.9562 11.6489 15.5 10.25 15.5C7.33866 15.5 5 13.1613 5 10.25C5 7.33866 7.33866 5 10.25 5Z" fill="#637394"/>
         </svg>
       </div>
       <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
-        <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
-            <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              02h08
-            </ion-label>
-            <img class="h-[230px] w-full " src="../../assets/images/movies/01paw Patrol.png" alt="paw patrol cover">
-          </div>
-          <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Paw patrol</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Science-fiction</ion-label>
-          </div>
-        </div>
-        <div class="relative h-[280px] shadown-down ">
-          <div class="overflow-hidden top-0  mb-2 rounded-lg ">
-            <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              01h57
-            </ion-label>
-            <img class="h-[230px] w-full " src="../../assets/images/movies/Imageexpandables.png" alt="expandables cover">
-          </div>
-          <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Expendables 4</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Adventure</ion-label>
-          </div>
-        </div>
-        <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
-            <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              02h06
-            </ion-label>
-            <img class="h-[230px] w-full " src="../../assets/images/movies/ImageAya de You.png" alt="expandables cover">
-          </div>
-          <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Aya de Youpougon</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Horror</ion-label>
-          </div>
-        </div>
-        <div class="relative h-[280px]">
+        <div class="relative h-[280px]" *ngFor="let movie of scheduledMovies">
           <div class="overflow-hidden top-0 mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              01h30
+              {{movie.time}}
             </ion-label>
-            <img class="shadown-down h-[230px] w-full " src="../../assets/images/movies/wonka" alt="expandables cover">
+            <img class="shadown-down h-[230px] w-full" [src]="movie.url" [alt]="movie.url+' cover'">
           </div>
           <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Wonka</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Comedy</ion-label>
-          </div>
-        </div>
-        <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
-            <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              02h08
-            </ion-label>
-            <img class="h-[230px] w-full " src="../../assets/images/movies/Imagewish.png" alt="Ashia cover">
-          </div>
-          <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Wish, Ashia et la bonne étoile</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Action</ion-label>
-          </div>
-        </div>
-        <div class="relative h-[280px]">
-          <div class="overflow-hidden top-0  mb-2 rounded-lg shadown-down ">
-            <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
-              02h08
-            </ion-label>
-            <img class="h-[230px] w-full " src="../../assets/images/movies/Imagefive night.png" alt="Ashia cover">
-          </div>
-          <div class="text-left">
-            <ion-label class="text-white text-base font-bold mb-1">Five Nights</ion-label> <br>
-            <ion-label class="text-sm font-normal text-[#637394]">Action</ion-label>
+            <ion-label class="text-white text-base font-bold mb-1">{{movie.name}}</ion-label> <br>
+            <ion-label class="text-sm font-normal text-[#637394]">{{movie.type}}</ion-label>
           </div>
         </div>
       </div>
@@ -285,97 +117,55 @@
     <div [ngClass]="bottomModal==='login'?'showSheet':'hideSheet'" class="z-10 bg-[#0A1445] absolute bottom-0 rounded items-center p-4 w-full overflow-hidden rounded-t-lg flex flex-col">
       <ion-label class="text-2xl font-bold w-full text-center">Login</ion-label>
       
-      <ng-container *ngIf="false">
+      <ng-container *ngIf="loginStep!=='number'">
         <ion-label class="text-[#637394] mt-2 mb-4 text-base text-center">Enter the password from the sms</ion-label>
-        <ion-label class="text-white text-base font-thin flex justify-center gap-x-2">
-          <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg flex justify-center items-center" value="9"></ion-input>
-          <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value="7"></ion-input>
-          <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
-          <ion-input maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
-        </ion-label>
-        <button class="rounded-lg mt-2.5 mb-4 text-white success-shadow w-[343px] h-14 text-lg button-primary" > Login </button>
-        <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center">Change number</button>
-        <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center mb-4">Resend (0:59)</button>
+        <form [formGroup]="loginCodeForm" (ngSubmit)="login()" class=" w-full flex flex-col items-center">
+          <ion-label class="text-white text-base font-thin flex justify-center gap-x-2">
+            <ion-input formControlName="number1" maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg flex justify-center items-center" value="9"></ion-input>
+            <ion-input formControlName="number2" maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value="7"></ion-input>
+            <ion-input formControlName="number3" maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
+            <ion-input formControlName="number4" maxlength="1" inputmode="numeric" class="text-center px-4 py-2 h-14 w-20 border border-solid border-[#6d9eff1a] h-14 rounded-lg justify-center items-center" value=""></ion-input>
+          </ion-label>
+        </form>
+        
+        <button class="rounded-lg mt-2.5 mb-4 text-white success-shadow w-[343px] h-14 text-lg button-primary" [disabled]="loginCodeForm.invalid"> Login </button>
+        <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center" (click)="nextLoginStep(false)">Change number</button>
+        <button class="text-[#637394] h-10 text-sm font-bold flex items-center justify-center mb-4 "[disabled]="timeOut>0"  (click)=resendConfirmationCode()>Resend &nbsp;<span [ngClass]="timeOut===0 ? 'hidden':''">(0:{{timeOut}})</span> </button>
       </ng-container>
 
-      <ng-container *ngIf="true">
+      <ng-container *ngIf="loginStep==='number'">
         <ion-label class="text-[#637394] mt-2 mb-4 text-base text-center">Access to purchased tickets</ion-label>
-        <ion-input id="phone-number-input" class=" h-14 w-[343px] border border-solid border-[#6d9eff1a] rounded-lg" placeholder="Phone number"></ion-input>
-        <button class="rounded-lg mt-2.5 mb-4 text-white success-shadow w-[343px] h-14 text-lg button-primary" > Continue </button>
+        <ion-input inputmode="tel" [(ngModel)]="userNumber" id="phone-number-input" class="h-14 w-[343px] border border-solid border-[#6d9eff1a] rounded-lg" placeholder="Phone number"></ion-input>
+        <button [disabled]="userNumber.length===0" class="rounded-lg mt-2.5 mb-4 text-white success-shadow w-[343px] h-14 text-lg button-primary" (click)="nextLoginStep(true)" > Continue </button>
       </ng-container>
     </div>
 
-    <div [ngClass]="bottomModal==='search'?'showSheet':'hideSheet'" class="bg-[#0A1445] absolute bottom-0 text-white p-4 rounded-lg w-screen">
+    <div [ngClass]="bottomModal==='search'?'showSheet':'hideSheet'" class="bg-[#0A1445] absolute bottom-0 h-[524px] text-white p-4 rounded-lg w-screen">
       <div class=" border border-solid border-[#6d9eff1a] py-3 pl-3 pr-4 flex h-14 w-full mb-1 rounded-lg flex items-center">
           <svg class="mr-[12px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M10.25 3C6.25778 3 3 6.25778 3 10.25C3 14.2422 6.25778 17.5 10.25 17.5C11.8866 17.5 13.3945 16.9465 14.6104 16.0254L19.293 20.707C19.3851 20.803 19.4955 20.8796 19.6176 20.9324C19.7397 20.9852 19.8712 21.0131 20.0042 21.0144C20.1373 21.0158 20.2692 20.9906 20.3924 20.9403C20.5156 20.89 20.6275 20.8157 20.7216 20.7216C20.8157 20.6275 20.89 20.5156 20.9403 20.3924C20.9906 20.2692 21.0158 20.1373 21.0144 20.0042C21.0131 19.8712 20.9852 19.7397 20.9324 19.6176C20.8796 19.4955 20.803 19.3851 20.707 19.293L16.0254 14.6104C16.9465 13.3945 17.5 11.8866 17.5 10.25C17.5 6.25778 14.2422 3 10.25 3ZM10.25 5C13.1613 5 15.5 7.33866 15.5 10.25C15.5 11.6479 14.957 12.9103 14.0742 13.8486C13.9883 13.9108 13.9128 13.9863 13.8506 14.0723C12.9121 14.9562 11.6489 15.5 10.25 15.5C7.33866 15.5 5 13.1613 5 10.25C5 7.33866 7.33866 5 10.25 5Z" fill="#637394"/>
           </svg>
-          <ion-input class="grow" placeholder="Search" > </ion-input>
+          <ion-input class="grow" placeholder="Search" #inputSearch (ionInput)="searchLocation($event)" > </ion-input>
+          <svg (click)="locationsSearchResult=locations;inputSearch.value=''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="ml-[10px] opacity-50 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
       </div>
-        <ion-item>
-          <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <ion-item class="cursor-pointer" (click)="selectLocation(location)" [lines]="i===locationsSearchResult.length-1?'none':''" *ngFor="let location of locationsSearchResult; let i=index">
+          <svg [ngClass]="selectedLocation.id!==location.id?'opacity-0':' opacity-1'" class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
           </svg>
-          <ion-text >REBERO, Kigali Rwanda</ion-text>
-        </ion-item>
-        <ion-item >
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>Yaoundé 1, Yaoundé Cameroun</ion-text> 
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>Bessengue, Douala Cameroun</ion-text>
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>WOLOGUEDE, Cotonou BENIN</ion-text>
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>POPO, Braazaville Congo</ion-text>
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>KALOUM, Conakry Guinée</ion-text>
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>GOGOPE, Lomé Togo</ion-text>
-        </ion-item>
-        <ion-item>
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>MIDE, Lomé Togo</ion-text>
-        </ion-item>
-        <ion-item lines="none">
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
-          </svg>
-          <ion-text>Teranga, Dakar Sénégal</ion-text>
+          <ion-text>{{location.name}}</ion-text>
         </ion-item>
     </div>
 
     <div [ngClass]="bottomModal==='language'?'showSheet':'hideSheet'" class=" bg-[#0A1445] text-white rounded-lg p-4 absolute w-full bottom-0">
-        <ion-item>
+        <ion-item class="cursor-pointer" (click)="setLanguage('fr')">
           <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
           </svg>
           <ion-text>Français</ion-text>
         </ion-item>
-        <ion-item lines="none">
+        <ion-item lines="none" class="cursor-pointer" (click)="setLanguage('en')">
           <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
           </svg>

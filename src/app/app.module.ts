@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [MaskitoModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    MaskitoModule,
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
