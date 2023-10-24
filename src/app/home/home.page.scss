@@ -1,14 +1,43 @@
-.dark-bottom{
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
+@keyframes showSheetAction{
+    0%{
+      transform: translateY(100%);
+    }
+    100%{
+      transform: translateY(0%);
+    }
+}
+@keyframes hideSheetAction{
+  0%{
+    transform: translateY(0%);
+  }
+  100%{
+    transform: translateY(100%);
+  }
 }
 
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
+.hideSheet{
+  animation: hideSheetAction 300ms ease-out both;
+}
+
+.showSheet{
+  animation: showSheetAction 300ms ease-in both;
+}
+
+.hideModalTransition{
+  transition: height 0ms 310ms, background-color 300ms 0ms;
+}
+
+
+.dark-bottom{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
 }
 
 .scrollbar-none{
   -ms-overflow-style: none;  
   scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 swiper-slide {
     display: flex;
@@ -34,7 +63,7 @@ swiper-slide {
     transition-duration: 4ms;
     transition-property: height;
   }
-  .bottom-action-transition{
-    transition: height 3s ease 1s;
-
+  
+  #phone-number-input{
+    padding-left: 16px !important;
   }

@@ -16,4 +16,12 @@ export class HomePage {
     this.bottomModal='login';
   }
 
+  displaySearch(){
+    this.bottomModal='search';
+  }
+
+  displayLanguageSelector(){
+    this.bottomModal='language';
+  }
+
 }
