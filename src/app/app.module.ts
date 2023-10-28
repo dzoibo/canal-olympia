@@ -5,9 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { MaskitoModule } from '@maskito/angular';
 import { AppComponent } from './app.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SplashComponent,
+  ],
   imports: [
     MaskitoModule,
     BrowserModule,

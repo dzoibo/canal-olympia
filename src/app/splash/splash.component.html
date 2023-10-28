@@ -1,9 +1,17 @@
-<div class="flex hidden items-center h-full w-screen ">
-  <div class="container m-auto max-w-fit">
-    <img src="../../assets/images/image 3.png" >
+<div class="z-50 h-full absolute w-full" id="change-opacity">
+  <div class="flex hidden items-center h-full w-screen ">
+    <div class="container m-auto max-w-fit">
+      <img src="../../assets/images/image 3.png" >
+    </div>
+  </div>
+  
+  <div class=" h-screen w-screen flex items-end justify-center bg-cover bg-no-repeat " id="home-screen" >
+    <button (click)="goToHome()" class="z-10 mb-[146px] absolute  w-[287px] h-[50px] button-primary cursor-pointer text-lg">Commencer</button>
+    <div  class=" absolute w-full h-2/6 bottom-0 left-0 text-black" id="home-screen-bottom" ></div>
   </div>
 </div>
-<div class=" h-screen w-screen flex items-end justify-center bg-cover bg-no-repeat " id="home-screen" >
-  <button  class="z-10 mb-[146px] absolute  w-[287px] h-[50px] button-primary cursor-pointer text-lg">Commencer</button>
-  <div  class=" absolute w-full h-2/6 bottom-0 left-0 text-black" id="home-screen-bottom" ></div>
+
+<div  class="overflow-hidden h-full w-full absolute inset-0 flex justify-center items-center bg-white">
+  <img  class="z-10" src="../../assets/images/image 3splash logo.png" alt="image-logo">
+  <div id="red-background" class="absolute h-20 w-20" ></div>
 </div>

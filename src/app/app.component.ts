@@ -9,6 +9,8 @@ import { StatusBar } from '@capacitor/status-bar';
 })
 export class AppComponent {
   constructor() {
-    StatusBar.setBackgroundColor({color:"0c208080"});
+    StatusBar.setBackgroundColor({color:"0c208080"}).catch(error=>{
+      console.log('error:', error);    
+    });
   }
 }
