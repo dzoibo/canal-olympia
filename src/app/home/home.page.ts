@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { TestData } from '../data';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { SwiperOptions } from 'swiper/types';
 register();
 
 @Component({
@@ -25,6 +26,26 @@ export class HomePage implements OnInit{
   userNumber='';
   timeOut=60;
 
+  slideOptions: SwiperOptions = {
+    spaceBetween:"40",
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      slideShadows: false,
+      rotate: 0,
+      stretch: 0,
+      depth: 200,
+      scale: 0.95,
+      modifier:1
+    }, 
+    pagination: {
+      clickable: false,
+      renderBullet:(index: number, className: string) => '<span> </span>'
+    },
+  };
+  activeIndex=0;
   constructor(
     private formBuilder: FormBuilder,
   ){}
@@ -40,7 +61,9 @@ export class HomePage implements OnInit{
       number3:['',Validators.required],
       number4:['',Validators.required],
     });
-
+    const swiperEl:any = document.querySelector('swiper-container');
+    Object.assign(swiperEl, this.slideOptions);
+    swiperEl?.initialize();
   }
 
   displayLogin(){
@@ -102,5 +125,10 @@ export class HomePage implements OnInit{
  searchLocation(event: any){
   const searchKey = event.target!.value;
   this.locationsSearchResult= this.locations.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
+ }
+ onSlideChange(event: any){
+  console.log(event)
+   this.activeIndex=event.detail[0].activeIndex;
+   console.log('the active index', this.activeIndex);
  }
 }

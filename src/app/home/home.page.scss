@@ -23,6 +23,11 @@
   animation: showSheetAction 300ms ease-in both;
 }
 
+.swiper-pagination-bullet-active{
+  background-color: white;
+  width: 24px;
+}
+
 .hideModalTransition{
   transition: height 0ms 310ms, background-color 300ms 0ms;
 }

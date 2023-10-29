@@ -46,9 +46,9 @@
       </ion-chip>
     </div>
     <div class="pl-4">
-      <swiper-container [slidesPerView]="" [loop]="true">
-        <swiper-slide *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
-          <div class="relative w-[300px] h-[450px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
+      <swiper-container (swiperslidechange)="onSlideChange($event)">
+        <swiper-slide  class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
+          <div class="relative w-[300px] h-[486px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
             <img class="inset-0 absolute h-full w-full rounded-[14.5px]" [src]="movie.url" [alt]="movie.name+' cover' ">
             <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -82,6 +82,11 @@
           </div>
         </swiper-slide>
       </swiper-container>
+      <div class="flex gap-1 w-full justify-center items-center mb-2">
+        <ng-container *ngFor="item of slideMovies; let i=index" >
+          <ion-label [ngClass]="i===activeIndex?'swiper-pagination-bullet-active':''" class="w-2 h-2 rounded-[24px] bg-white/[20%]" ></ion-label>
+        </ng-container>
+      </div>
     </div>
 
     <div class="px-4">
