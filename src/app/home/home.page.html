@@ -1,9 +1,9 @@
 
-<div class="bg-[#0A1445] w-screen h-screen overflow-auto pt-16" >
+<div id="global-container" class="bg-[#0A1445] w-screen h-screen overflow-auto pt-16" >
 
   <ion-header class="fixed z-30 top-[-1px] left-0 backdrop-blur-[20px] w-full bg-[#0c2080]/[0.5] flex px-4 flex justify-between items-center h-16">
     <div class="flex items-center">
-      <div class="w-[48px] h-[40px] ">
+      <div class="w-[48px] h-[40px]" (click)="backToTop()">
         <img src="../../assets/images/olympia-logo.png" class="h-full w-full success-shadow" alt="canal-olympia-logo">
       </div>
 
@@ -82,7 +82,7 @@
           </div>
         </swiper-slide>
       </swiper-container>
-      <div class="flex gap-1 w-full justify-center items-center mb-2">
+      <div class="flex gap-1 w-full justify-center items-center pb-2">
         <ng-container *ngFor="item of slideMovies; let i=index" >
           <ion-label [ngClass]="i===activeIndex?'swiper-pagination-bullet-active':''" class="w-2 h-2 rounded-[24px] bg-white/[20%]" ></ion-label>
         </ng-container>
@@ -91,15 +91,30 @@
 
     <div class="px-4">
       <div class=" flex justify-between font-bold items-center my-[23px]">
-        <ion-text class="text-white text-xl">
+        <ion-text *ngIf="!isActiveSearchMovie"  class="text-white text-xl">
           Semaine du 23-29 Oct 
         </ion-text>
-        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <div class="flex justify-center items-center" *ngIf="isActiveSearchMovie" >
+          <div class=" border border-solid border-[#6d9eff1a] py-3 pl-3 pr-4 flex h-14 grow-1 mb-1 rounded-lg flex items-center">
+            <svg class="mr-[12px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M10.25 3C6.25778 3 3 6.25778 3 10.25C3 14.2422 6.25778 17.5 10.25 17.5C11.8866 17.5 13.3945 16.9465 14.6104 16.0254L19.293 20.707C19.3851 20.803 19.4955 20.8796 19.6176 20.9324C19.7397 20.9852 19.8712 21.0131 20.0042 21.0144C20.1373 21.0158 20.2692 20.9906 20.3924 20.9403C20.5156 20.89 20.6275 20.8157 20.7216 20.7216C20.8157 20.6275 20.89 20.5156 20.9403 20.3924C20.9906 20.2692 21.0158 20.1373 21.0144 20.0042C21.0131 19.8712 20.9852 19.7397 20.9324 19.6176C20.8796 19.4955 20.803 19.3851 20.707 19.293L16.0254 14.6104C16.9465 13.3945 17.5 11.8866 17.5 10.25C17.5 6.25778 14.2422 3 10.25 3ZM10.25 5C13.1613 5 15.5 7.33866 15.5 10.25C15.5 11.6479 14.957 12.9103 14.0742 13.8486C13.9883 13.9108 13.9128 13.9863 13.8506 14.0723C12.9121 14.9562 11.6489 15.5 10.25 15.5C7.33866 15.5 5 13.1613 5 10.25C5 7.33866 7.33866 5 10.25 5Z" fill="#637394"/>
+            </svg>
+            <ion-input class="grow" placeholder="Search a movie" #inputSearchMovie autofocus="true" (ionInput)="searchMovie($event)" > </ion-input>
+            <svg (click)="searchResultMovies=scheduledMovies; inputSearchMovie.value=''" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="ml-[10px] opacity-50 w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div> 
+          <ion-label class="ml-4 font-thin" (click)="displayHideSearchMovie(false)" >Annuler</ion-label>
+        </div>
+        
+        
+        <svg  *ngIf="!isActiveSearchMovie" (click)="displayHideSearchMovie(true)" class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M10.25 3C6.25778 3 3 6.25778 3 10.25C3 14.2422 6.25778 17.5 10.25 17.5C11.8866 17.5 13.3945 16.9465 14.6104 16.0254L19.293 20.707C19.3851 20.803 19.4955 20.8796 19.6176 20.9324C19.7397 20.9852 19.8712 21.0131 20.0042 21.0144C20.1373 21.0158 20.2692 20.9906 20.3924 20.9403C20.5156 20.89 20.6275 20.8157 20.7216 20.7216C20.8157 20.6275 20.89 20.5156 20.9403 20.3924C20.9906 20.2692 21.0158 20.1373 21.0144 20.0042C21.0131 19.8712 20.9852 19.7397 20.9324 19.6176C20.8796 19.4955 20.803 19.3851 20.707 19.293L16.0254 14.6104C16.9465 13.3945 17.5 11.8866 17.5 10.25C17.5 6.25778 14.2422 3 10.25 3ZM10.25 5C13.1613 5 15.5 7.33866 15.5 10.25C15.5 11.6479 14.957 12.9103 14.0742 13.8486C13.9883 13.9108 13.9128 13.9863 13.8506 14.0723C12.9121 14.9562 11.6489 15.5 10.25 15.5C7.33866 15.5 5 13.1613 5 10.25C5 7.33866 7.33866 5 10.25 5Z" fill="#637394"/>
         </svg>
       </div>
+      <div class="m-auto p-2" *ngIf="searchResultMovies.length===0"> No movie </div>
       <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
-        <div class="relative h-[280px]" *ngFor="let movie of scheduledMovies">
+        <div class="relative h-[280px]" *ngFor="let movie of searchResultMovies">
           <div class="overflow-hidden top-0 mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               {{movie.time}}

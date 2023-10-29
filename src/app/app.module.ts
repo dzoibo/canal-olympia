@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { MaskitoModule } from '@maskito/angular';
 import { AppComponent } from './app.component';
 import { SplashComponent } from './splash/splash.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SplashComponent } from './splash/splash.component';
   imports: [
     MaskitoModule,
     BrowserModule,
+    CommonModule,
     IonicModule.forRoot(),
     AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

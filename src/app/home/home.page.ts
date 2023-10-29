@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { TestData } from '../data';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SwiperOptions } from 'swiper/types';
+import { IonInput } from '@ionic/angular';
 register();
 
 @Component({
@@ -11,8 +12,11 @@ register();
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
+  @ViewChild('inputSearchMovie') inputSearchMovie!: IonInput; 
   slideMovies: { id: number; url: string; name: string; language: string; category: string; type: string; resolution: string; }[] =[];
   scheduledMovies: { id: number; name: string; time: string; type: string; url: string; }[]=[];
+  searchResultMovies: { id: number; name: string; time: string; type: string; url: string; }[]=[];
+
   locations: { id: number; name: string; }[]=[];
   locationsSearchResult: { id: number; name: string; }[]=[];
   bottomModal='';
@@ -25,9 +29,9 @@ export class HomePage implements OnInit{
   loginCodeForm!: FormGroup;
   userNumber='';
   timeOut=60;
-
+  isActiveSearchMovie=false;
   slideOptions: SwiperOptions = {
-    spaceBetween:"40",
+    spaceBetween:"30",
     effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
@@ -37,7 +41,7 @@ export class HomePage implements OnInit{
       rotate: 0,
       stretch: 0,
       depth: 200,
-      scale: 0.95,
+      scale: 0.93,
       modifier:1
     }, 
     pagination: {
@@ -46,6 +50,7 @@ export class HomePage implements OnInit{
     },
   };
   activeIndex=0;
+  
   constructor(
     private formBuilder: FormBuilder,
   ){}
@@ -55,6 +60,7 @@ export class HomePage implements OnInit{
     this.scheduledMovies= TestData.scheduledMovies;
     this.locations=TestData.locations;
     this.locationsSearchResult=[...this.locations];
+    this.searchResultMovies=[...this.scheduledMovies];
     this.loginCodeForm=this.formBuilder.group({
       number1:['',Validators.required],
       number2:['',Validators.required],
@@ -78,9 +84,7 @@ export class HomePage implements OnInit{
     this.bottomModal='language';
   }
 
-  login(){
-
-  }  
+  login(){}  
 
   showMoviePreview(id: number){
   }
@@ -126,9 +130,25 @@ export class HomePage implements OnInit{
   const searchKey = event.target!.value;
   this.locationsSearchResult= this.locations.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
  }
- onSlideChange(event: any){
-  console.log(event)
-   this.activeIndex=event.detail[0].activeIndex;
-   console.log('the active index', this.activeIndex);
+
+ searchMovie(event: any){
+  const searchKey = event.target!.value;
+  this.searchResultMovies= this.scheduledMovies.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
  }
+
+ onSlideChange(event: any){
+   this.activeIndex=event.detail[0].activeIndex;
+ }
+
+ displayHideSearchMovie(value: boolean){
+  this.isActiveSearchMovie=value;
+  document.getElementById('global-container')?.scrollTo({ top: 300, behavior: 'smooth' });
+  this.inputSearchMovie.setFocus();
+
+ }
+
+ backToTop(){
+  document.getElementById('global-container')?.scrollTo({ top: 0, behavior: 'smooth' });
+ }
+
 }
