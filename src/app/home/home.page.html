@@ -47,7 +47,7 @@
     </div>
     <div class="pl-4">
       <swiper-container (swiperslidechange)="onSlideChange($event)">
-        <swiper-slide  class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
+        <swiper-slide (click)="showMoviesDetail(movie)"  class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
           <div class="relative w-[300px] h-[486px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
             <img class="inset-0 absolute h-full w-full rounded-[14.5px]" [src]="movie.url" [alt]="movie.name+' cover' ">
             <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
@@ -115,11 +115,11 @@
       <div class="m-auto p-2" *ngIf="searchResultMovies.length===0"> No movie </div>
       <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
         <div class="relative h-[280px]" *ngFor="let movie of searchResultMovies">
-          <div class="overflow-hidden top-0 mb-2 rounded-lg ">
+          <div class="success-shadow overflow-hidden top-0 mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               {{movie.time}}
             </ion-label>
-            <img class="shadown-down h-[230px] w-full" [src]="movie.url" [alt]="movie.url+' cover'">
+            <img class=" shadown-down h-[230px] w-full" [src]="movie.url" [alt]="movie.url+' cover'">
           </div>
           <div class="text-left">
             <ion-label class="text-white text-base font-bold mb-1">{{movie.name}}</ion-label> <br>

@@ -4,6 +4,8 @@ import { TestData } from '../data';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SwiperOptions } from 'swiper/types';
 import { IonInput } from '@ionic/angular';
+import { MoviesService } from '../services/movies.service';
+import { Router } from '@angular/router';
 register();
 
 @Component({
@@ -53,6 +55,8 @@ export class HomePage implements OnInit{
   
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
+    private movieService: MoviesService
   ){}
 
   ngOnInit(): void {
@@ -151,4 +155,8 @@ export class HomePage implements OnInit{
   document.getElementById('global-container')?.scrollTo({ top: 0, behavior: 'smooth' });
  }
 
+ showMoviesDetail(movies: any){
+  this.router.navigate(['movie-details']);
+  this.movieService.selectedMovie(movies);
+ }
 }

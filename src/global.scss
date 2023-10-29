@@ -30,10 +30,7 @@
 *{
    font-family: 'Sora',sans-serif ;
 }
-:root {
-    --swiper-navigation-color: red !important;
-    --swiper-theme-color: red !important;
-}
+
 .button-primary{
     background: linear-gradient(180deg,#ff114b,#bc002e);
     display: flex;
@@ -49,6 +46,7 @@
 .success-shadow{
     box-shadow: 0px 4px 16px 0px rgba(255, 128, 54, 0.25);
 }
+
 ion-input,ion-searchbar,ion-input:focus{
     --highlight-color-focused: none !important;
     --highlight-color-invalid:none !important;
