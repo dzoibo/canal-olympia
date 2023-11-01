@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { Location } from '@angular/common';
 import { TestData } from '../data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details',
@@ -15,6 +16,7 @@ export class MovieDetailsComponent  implements OnInit {
   isSwitchCinema=false; 
   constructor(
     private movieService: MoviesService,
+    private router: Router,
     private location: Location
   ) { }
 
@@ -36,8 +38,9 @@ export class MovieDetailsComponent  implements OnInit {
 
   }
 
-  selectPlace(sessionId: number){
-    
+  selectSession(sessionId: number){
+    this.router.navigate(['movie-reservation']);
+    this.movieService.selectSession(sessionId);
   }
 
 }

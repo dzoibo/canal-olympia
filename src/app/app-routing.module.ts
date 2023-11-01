@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SplashComponent } from './splash/splash.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MovieReservationComponent } from './movie-reservation/movie-reservation.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'movie-details',
     component: MovieDetailsComponent
+  },
+  {
+    path: 'movie-reservation',
+    component: MovieReservationComponent
   },
   {
     path: 'splash',

@@ -1,0 +1,16 @@
+#seats{
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    gap: 8px;
+}
+#light{
+    fill: linear-gradient(181deg, rgba(255, 255, 255, 0.10) 2.57%, rgba(31, 38, 51, 0.00) 93.2%);
+}
+#screen-container{
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
