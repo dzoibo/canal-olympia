@@ -1,3 +1,21 @@
+@keyframes SwitchOff{
+  from{
+    margin-left: 0px;
+    background-color: #637394;
+  }
+  to{
+    margin-left: 16px;
+    background-color: #BC002E;
+  }
+}
+.detail-container{
+  height: calc( 100vh - 112px);
+  overflow-y: auto;
+}
+#session-container{
+  height: calc( 100% - 106px);
+  overflow-y: auto;
+}
 #tab-border{
   height: 2px;  
   background-color:#BC002E ;
@@ -12,6 +30,15 @@
     text-align: center;
     text-shadow: 0px 0px 16px rgba(255, 128, 54, 0.50);
 }
+/*
+.switchOff{
+  animation: SwitchOff 1000ms ease-out reverse both;
+}
+
+.switchOn{
+  animation: SwitchOff 1000ms ease-out normal both ;
+}*/
+
 #item-border-left{
     border-left: 1px solid #6D9EFF1A;
 }

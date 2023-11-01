@@ -1,3 +1,4 @@
+import { scheduled } from "rxjs"
 
 export class TestData{
     static slideMovies=[{
@@ -116,5 +117,146 @@ export class TestData{
         }
 
         
+    ]
+
+    static planningList=[
+    {
+        day: 'Oct, 17',
+        sessions:[
+            {
+                id:1,
+                time: '11:00',
+                language: 'VF',
+                locationId:1,
+                price:{
+                    pre_first: 7000,
+                    prev:0,
+                    stand:0,
+                    child:0,
+
+                } 
+            },
+            {
+                id:2,
+                time: '13:00',
+                language: 'VOSTFR',
+                locationId:10,
+                price:{
+                    pre_first: 7000,
+                    prev:0,
+                    stand:0,
+                    child:0,
+
+                } 
+            },
+            {
+                id:3,
+                time: '15:00',
+                language: 'VOSTFR',
+                locationId:4,
+                price:{
+                    pre_first: 0,
+                    prev:5000,
+                    stand:0,
+                    child:0,
+
+                } 
+            },
+            {
+                id:4,
+                time: '16:50',
+                language: '2',
+                locationId:1,
+                price:{
+                    pre_first: 1900,
+                    prev:0,
+                    stand:2000,
+                    child:0,
+
+                } 
+            },
+            {
+                id:5,
+                time: '18:00',
+                language: 'VF',
+                locationId:6,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            },
+            {
+                id:7,
+                time: '18:00',
+                language: 'VF',
+                locationId:6,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            },
+            {
+                id:8,
+                time: '20:00',
+                language: 'VF',
+                locationId:8,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            },
+            {
+                id:9,
+                time: '20:00',
+                language: 'VF',
+                locationId:8,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            },
+            {
+                id:10,
+                time: '20:00',
+                language: 'VF',
+                locationId:8,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            },
+            {
+                id:11,
+                time: '20:00',
+                language: 'VF',
+                locationId:8,
+                price:{
+                    pre_first: 0,
+                    prev:0,
+                    stand:2000,
+                    child:1000,
+
+                } 
+            }
+
+
+            
+        ]
+    }
     ]
 }

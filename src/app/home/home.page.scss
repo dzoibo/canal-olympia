@@ -1,36 +1,11 @@
-@keyframes showSheetAction{
-    0%{
-      transform: translateY(100%);
-    }
-    100%{
-      transform: translateY(0%);
-    }
-}
-@keyframes hideSheetAction{
-  0%{
-    transform: translateY(0%);
-  }
-  100%{
-    transform: translateY(100%);
-  }
-}
 
-.hideSheet{
-  animation: hideSheetAction 300ms ease-out both;
-}
-
-.showSheet{
-  animation: showSheetAction 300ms ease-in both;
-}
 
 .swiper-pagination-bullet-active{
   background-color: white;
   width: 24px;
 }
 
-.hideModalTransition{
-  transition: height 0ms 310ms, background-color 300ms 0ms;
-}
+
 
 
 .dark-bottom{
