@@ -259,4 +259,209 @@ export class TestData{
         ]
     }
     ]
+
+    static column=[1,2,3,4,5,6,7,8,9,10,11,13,14,15];
+    static seats=[
+        {
+            row: 1,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "occupied" },
+                { id: 3, state: "free" },
+                { id: 4, state: "free" },
+                { id: 5, state: "occupied" },
+                { id: 6, state: "free" },
+                { id: 7, state: "occupied" },
+                { id: 8, state: "occupied" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "free" },
+                { id: 13, state: "occupied" },
+                { id: 14, state: "free" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 2,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "free" },
+                { id: 3, state: "free" },
+                { id: 4, state: "occupied" },
+                { id: 5, state: "occupied" },
+                { id: 6, state: "free" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "free" },
+                { id: 11, state: "occupied" },
+                { id: 12, state: "free" },
+                { id: 13, state: "free" },
+                { id: 14, state: "occupied" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 3,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "occupied" },
+                { id: 3, state: "free" },
+                { id: 4, state: "occupied" },
+                { id: 5, state: "free" },
+                { id: 6, state: "free" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "occupied" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "free" },
+                { id: 13, state: "occupied" },
+                { id: 14, state: "free" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 4,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "free" },
+                { id: 3, state: "occupied" },
+                { id: 4, state: "occupied" },
+                { id: 5, state: "free" },
+                { id: 6, state: "free" },
+                { id: 7, state: "occupied" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "free" },
+                { id: 11, state: "occupied" },
+                { id: 12, state: "free" },
+                { id: 13, state: "occupied" },
+                { id: 14, state: "occupied" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 5,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "free" },
+                { id: 3, state: "occupied" },
+                { id: 4, state: "free" },
+                { id: 5, state: "occupied" },
+                { id: 6, state: "free" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "occupied" },
+                { id: 12, state: "free" },
+                { id: 13, state: "free" },
+                { id: 14, state: "occupied" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 6,
+            columns: [
+                { id: 1, state: "occupied" },
+                { id: 2, state: "free" },
+                { id: 3, state: "free" },
+                { id: 4, state: "occupied" },
+                { id: 5, state: "free" },
+                { id: 6, state: "occupied" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "free" },
+                { id: 13, state: "occupied" },
+                { id: 14, state: "free" },
+                { id: 15, state: "occupied" }
+            ]
+        },
+        {
+            row: 7,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "free" },
+                { id: 3, state: "free" },
+                { id: 4, state: "free" },
+                { id: 5, state: "occupied" },
+                { id: 6, state: "occupied" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "free" },
+                { id: 13, state: "free" },
+                { id: 14, state: "free" },
+                { id: 15, state: "occupied" }
+            ]
+        },
+        {
+            row: 8,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "occupied" },
+                { id: 3, state: "free" },
+                { id: 4, state: "occupied" },
+                { id: 5, state: "occupied" },
+                { id: 6, state: "free" },
+                { id: 7, state: "free" },
+                { id: 8, state: "free" },
+                { id: 9, state: "free" },
+                { id: 10, state: "free" },
+                { id: 11, state: "free" },
+                { id: 12, state: "occupied" },
+                { id: 13, state: "free" },
+                { id: 14, state: "occupied" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 9,
+            columns: [
+                { id: 1, state: "occupied" },
+                { id: 2, state: "free" },
+                { id: 3, state: "occupied" },
+                { id: 4, state: "free" },
+                { id: 5, state: "free" },
+                { id: 6, state: "free" },
+                { id: 7, state: "free" },
+                { id: 8, state: "occupied" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "occupied" },
+                { id: 13, state: "free" },
+                { id: 14, state: "free" },
+                { id: 15, state: "free" }
+            ]
+        },
+        {
+            row: 10,
+            columns: [
+                { id: 1, state: "free" },
+                { id: 2, state: "free" },
+                { id: 3, state: "occupied" },
+                { id: 4, state: "free" },
+                { id: 5, state: "free" },
+                { id: 6, state: "free" },
+                { id: 7, state: "occupied" },
+                { id: 8, state: "occupied" },
+                { id: 9, state: "free" },
+                { id: 10, state: "occupied" },
+                { id: 11, state: "free" },
+                { id: 12, state: "free" },
+                { id: 13, state: "occupied" },
+                { id: 14, state: "free" },
+                { id: 15, state: "free" }
+            ]
+        }
+    ]
+    
 }
