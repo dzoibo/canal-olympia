@@ -47,10 +47,15 @@
     </div>
     <div class="pl-4">
       <swiper-container (swiperslidechange)="onSlideChange($event)">
-        <swiper-slide (click)="showMoviesDetail(movie)"  class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
+        <swiper-slide (click)="startVideo()" class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
           <div class="relative w-[300px] h-[486px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
-            <img class="inset-0 absolute h-full w-full rounded-[14.5px]" [src]="movie.url" [alt]="movie.name+' cover' ">
-            <div class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
+           
+            <video (pause)="videoHasStarted=false" [ngClass]="videoHasStarted===true?'z-50':''" (play)="videoHasStarted=true" controls [poster]="movie.url" title="trailler video" class="object-cover h-full w-full bg-black/[50%] rounded-[14.5px] inset-0 absolute">
+              <source src="../../assets/video/Expandables_trailer.mp4" type="video/mp4">
+              Your device doesn't support reading video
+            </video>
+    
+            <div  class="h-[36px] w-[68px] top-2 left-2 absolute flex items-center justify-center bg-black/[60%] rounded-[52.716px]">
               <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <circle cx="4.58481" cy="5.26919" r="4.54452" fill="#EB0400"/>
               </svg>
@@ -63,7 +68,7 @@
                 <path d="M19.0454 8.72725L16.3182 11.4545M13.5909 14.1818L16.3182 11.4545M16.3182 11.4545L19.0454 14.1818M16.3182 11.4545L13.5909 8.72725" stroke="white" stroke-width="2.04545"/>
               </svg>
             </div>
-            <div class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
+            <div *ngIf="!videoHasStarted" class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
                 <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
               </svg>
@@ -114,7 +119,7 @@
       </div>
       <div class="m-auto p-2" *ngIf="searchResultMovies.length===0"> No movie </div>
       <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
-        <div class="relative h-[280px]" *ngFor="let movie of searchResultMovies">
+        <div (click)="showMoviesDetail(movie)"  class="relative h-[280px]" *ngFor="let movie of searchResultMovies">
           <div class="success-shadow overflow-hidden top-0 mb-2 rounded-lg ">
             <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-[#BC002E] z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
               {{movie.time}}
@@ -134,7 +139,7 @@
       
     </div>
 
-    <div [ngClass]="bottomModal==='login'?'showSheet':'hideSheet'" class="z-10 bg-[#0A1445] absolute bottom-0 rounded items-center p-4 w-full overflow-hidden rounded-t-lg flex flex-col">
+    <div  [ngClass]="bottomModal==='login'?'showSheet':'hideSheet'" class="z-10 bg-[#0A1445] absolute bottom-0 rounded items-center p-4 w-full overflow-hidden rounded-t-lg flex flex-col">
       <ion-label class="text-2xl font-bold w-full text-center">Login</ion-label>
       
       <ng-container *ngIf="loginStep!=='number'">
@@ -178,7 +183,7 @@
         </ion-item>
     </div>
 
-    <div [ngClass]="bottomModal==='language'?'showSheet':'hideSheet'" class=" bg-[#0A1445] text-white rounded-lg p-4 absolute w-full bottom-0">
+    <div [ngClass]="bottomModal==='language'?'showSheet':'hideSheet'" class="bg-[#0A1445] text-white rounded-lg p-4 absolute w-full bottom-0">
         <ion-item class="cursor-pointer" (click)="setLanguage('fr')">
           <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>

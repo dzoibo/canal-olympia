@@ -1,7 +1,7 @@
 <div id="global-container" [ngClass]="selectedTab==='about'?'pb-[85px]':'pb-0'" class="flex flex-col bg-[#0A1445] w-screen h-screen overflow-auto" >
   <ion-header class=" backdrop-blur-[20px] w-full bg-[#0c2080]/[0.5] ">
     <div class="flex items-center h-16">
-      <svg (click)="backToHome()" class="ml-6 mr-[80px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <svg (click)="backToHome()" class="shrink-0 ml-6 mr-[80px]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M15.9805 3.49024C15.7207 3.49798 15.4741 3.60656 15.293 3.79298L7.79302 11.293C7.60555 11.4805 7.50024 11.7348 7.50024 12C7.50024 12.2652 7.60555 12.5195 7.79302 12.707L15.293 20.207C15.3852 20.303 15.4955 20.3796 15.6177 20.4324C15.7398 20.4852 15.8712 20.5131 16.0043 20.5145C16.1373 20.5158 16.2693 20.4906 16.3925 20.4403C16.5156 20.39 16.6275 20.3157 16.7216 20.2216C16.8157 20.1275 16.8901 20.0156 16.9404 19.8924C16.9906 19.7692 17.0159 19.6373 17.0145 19.5042C17.0131 19.3712 16.9853 19.2397 16.9325 19.1176C16.8797 18.9955 16.8031 18.8851 16.7071 18.793L9.91411 12L16.7071 5.20704C16.8516 5.06658 16.9503 4.88574 16.9902 4.68822C17.0302 4.4907 17.0096 4.28571 16.931 4.10013C16.8525 3.91454 16.7197 3.75701 16.5501 3.64818C16.3805 3.53935 16.182 3.4843 15.9805 3.49024Z" fill="#637394"/>
       </svg>
       <ion-label class="w-full font-bold text-lg">Expandables 4</ion-label>
@@ -14,9 +14,18 @@
   </ion-header>
   <div class="flex flex-col detail-container" *ngIf="selectedTab==='about'">
     <div class=" bg-[#0A1445]">
-      <div class="mx-[11px] mt-[12px] h-[198px] rounded-[16px] border-solid border-black border">
-      
-      
+
+      <div  (click)="startVideo()" class="mx-[11px] mt-[12px] h-[198px] relative">
+        <video poster="../../assets/images/movies/Imageexpandables.png" class="object-cover h-full w-full bg-black/[50%] rounded-[16px]">
+          <source src="../../assets/video/Expandables_trailer.mp4" type="video/mp4">
+          Your device doesn't support reading video
+        </video>
+
+        <div *ngIf="videoHasStarted===false" class="z-20 rounded-[72.72px] w-[58px] h-[58px] flex justify-center items-center absolute top-2/4 left-2/4 bg-white/[10%] translate-y-[-50%] translate-x-[-50%] backdrop-blur-[18px]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="23" viewBox="0 0 22 23" fill="none">
+            <path d="M5.36187 2.50519C4.31992 2.54641 3.36346 3.39648 3.36346 4.54176V18.5492C3.36346 20.0763 5.06472 21.0782 6.40057 20.3381L19.0408 13.3344C20.4151 12.5729 20.4151 10.5181 19.0408 9.75661L6.40057 2.75288C6.06661 2.56786 5.70918 2.49145 5.36187 2.50519Z" fill="white" fill-opacity="0.5"/>
+          </svg>
+        </div>
       </div>
       <div class="h-[71px] flex w-full ">
         <div class="h-full flex flex-col items-center justify-center w-1/2">

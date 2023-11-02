@@ -14,6 +14,7 @@ export class MovieDetailsComponent  implements OnInit {
   moviePlanning: { day: string; sessions: { id: number; time: string; language: string; locationId: number; price: { pre_first: number; prev: number; stand: number; child: number; }; }[]; }[]=[];
   bottomModal='';
   isSwitchCinema=false; 
+  videoHasStarted=false;
   constructor(
     private movieService: MoviesService,
     private router: Router,
@@ -42,5 +43,15 @@ export class MovieDetailsComponent  implements OnInit {
     this.router.navigate(['movie-reservation']);
     this.movieService.selectSession(sessionId);
   }
+  startVideo() {
+    this.videoHasStarted=!this.videoHasStarted;
+    const video = document.querySelector('video') as HTMLVideoElement;
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+
 
 }

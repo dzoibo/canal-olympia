@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { TestData } from '../data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-reservation',
@@ -14,7 +15,8 @@ export class MovieReservationComponent  implements OnInit {
   isLoading=false;
 
   constructor(
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,17 @@ export class MovieReservationComponent  implements OnInit {
 
   expandSeat(value: boolean){
     this.isExpandedSeat=value;
+    const seats:any=document.getElementById('global-container');
+    const scrollWidth=seats?.scrollWidth / (2);
+    /*
+    setTimeout(() => {
+      if (seats) {
+        seats.scrollTo({
+            left: scrollWidth-100,
+            behavior: "smooth"
+        });
+      }
+    }, 200);*/
   }
 
   reserveSeat(rowIndex: number, columnIndex: number){ 
@@ -48,6 +61,7 @@ export class MovieReservationComponent  implements OnInit {
     this.isLoading=true;
     setTimeout(() => {
       this.isLoading=false;
-    }, 500);
+      this.router.navigate(['/home']);
+    }, 2000);
   }
 }

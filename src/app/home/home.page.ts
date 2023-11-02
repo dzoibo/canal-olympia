@@ -52,6 +52,7 @@ export class HomePage implements OnInit{
     },
   };
   activeIndex=0;
+  videoHasStarted= false;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -157,6 +158,11 @@ export class HomePage implements OnInit{
 
  showMoviesDetail(movies: any){
   this.router.navigate(['movie-details']);
-  this.movieService.selectedMovie(movies);
+  this.movieService.displayMovieDetails(movies);
  }
+
+ startVideo() {
+  const video = document.querySelector('video') as HTMLVideoElement;
+  video.play();
+}
 }

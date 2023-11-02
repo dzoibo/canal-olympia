@@ -1,4 +1,4 @@
-<div id="global-container" [ngClass]="isLoading?'invisible':''" class="pt-[124px] flex flex-col bg-[#0A1445] w-screen h-screen overflow-auto" >
+<div id="global-container" [ngClass]="isLoading?'hidden':'flex'" class="pt-[124px] flex-col bg-[#0A1445] w-screen h-screen overflow-auto" >
   <ion-header class="absolute top-0 backdrop-blur-[20px] w-full bg-[#0c2080]/[0.5] pb-3">
     <div class="flex items-center justify-between h-16 w-full">
       <svg (click)="back()" class="ml-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -87,7 +87,6 @@
         </ng-container>
       </div>
     </div>
-   
     
 
     <div class="text-xs w-full h-12  relative mt-2">
@@ -115,8 +114,8 @@
     </div>
   </div>
 </div>
-<div [ngClass]="!isLoading?'invisible':''" class="hidden h-screen w-screen bg-[#0A1445]">
-  <div class="absolute m-auto">
-    <img src="../../assets/images/loader.gif" alt="loader">
+<div [ngClass]="!isLoading?'hidden':'flex'" class="h-screen w-screen justify-center items-center bg-[#0A1445]">
+  <div class="h-16 w-16 ">
+    <img src="../../assets/images/loader.gif" class="h-full w-full rounded-xl" alt="loader">
   </div>
 </div>
