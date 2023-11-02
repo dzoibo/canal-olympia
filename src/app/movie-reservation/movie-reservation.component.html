@@ -1,4 +1,4 @@
-<div id="global-container" class="pt-[124px] flex flex-col bg-[#0A1445] w-screen h-screen overflow-auto" >
+<div id="global-container" [ngClass]="isLoading?'invisible':''" class="pt-[124px] flex flex-col bg-[#0A1445] w-screen h-screen overflow-auto" >
   <ion-header class="absolute top-0 backdrop-blur-[20px] w-full bg-[#0c2080]/[0.5] pb-3">
     <div class="flex items-center justify-between h-16 w-full">
       <svg (click)="back()" class="ml-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -57,25 +57,29 @@
         
       </div>
   
-      <div id="seats" class="w-auto overflow-auto my-4 text-xs">
+      <div id="seats" class="w-auto overflow-auto my-4 text-xs" 
+      [ngStyle]="{
+        'grid-template-columns':'repeat('+seats[0].columns.length+', 1fr)',
+        'grid-template-rows': 'repeat('+seats.length+', 1fr)'
+      }">
         <ng-container *ngFor="let seat of seats ; let i =index">
           <ng-container *ngFor="let column of seat.columns;let j=index" >
-        
-            <ng-container *ngIf="column.state==='occupied'">
-              <div [ngClass]="isExpandedSeat?'expanded-seat':'wrapped-seat'" class="flex items-center justify-center h-3 w-3">
-                <ion-text class="text-[#637394]">x</ion-text>
-              </div>
+            
+            <ng-container *ngIf="column.state!=='occupied'">
+              <div (click)="reserveSeat(i,j)" [ngClass]="isExpandedSeat?'expanded-seat':'wrapped-seat'" class="flex items-center justify-center h-3 w-3 rounded-[12px] overflow-hidden">
+                <div *ngIf="column.state==='free'" class="flex justify-center items-center h-full w-full bg-[#253554]" >
+                  {{column.id}}
+                </div>
+                <div *ngIf="column.state==='selected'" class="flex h-full w-full button-primary success-shadow">
+                  {{column.id}}
+                </div>
+              </div> 
             </ng-container>
 
-            <ng-container *ngIf="column.state!=='occupied'">
-              <div (click)="reserveSeat(i,j)" [ngClass]="{
-                'expanded-seat button-primary success-shadow': column.state==='selected' && isExpandedSeat,
-                'bg-[#253554] expanded-seat ma' : column.state==='free' && isExpandedSeat ,
-                'button-primary success-shadow wrapped-seat' : column.state==='selected' && !isExpandedSeat,
-                'bg-[#253554] wrapped-seat' :  !isExpandedSeat && column.state==='free'
-              }" class="flex items-center justify-center h-3 w-3 rounded-[12px]">
-                {{column.id}}
-              </div> 
+            <ng-container *ngIf="column.state==='occupied'">
+              <div [ngClass]="isExpandedSeat?'expanded-seat':'wrapped-seat'" class="flex items-center justify-center h-3 w-3">
+                <ion-text class="text-[#637394] font-bold">x</ion-text> 
+              </div>
             </ng-container>
             
           </ng-container>
@@ -86,7 +90,7 @@
    
     
 
-    <div class="text-xs w-full h-12  relative mt-1">
+    <div class="text-xs w-full h-12  relative mt-2">
       <div class="left-0 fixed w-screen flex justify-center items-center font-thin">
         <div class="mr-4 flex justify-center items-center">
           <div class="w-4 h-4 rounded-[50%] mr-2 bg-[#253554]"></div>
@@ -104,6 +108,15 @@
         </div>
       </div>
     </div>
-      
+    <div class="w-fullrelative mt-2 "> 
+      <div class="fixed w-screen left-0  flex justify-center " *ngIf="selectedSeats.length>0">
+        <button (click)="payTicket()" class="button-primary h-[56px] success-shadow   w-[343px] text-lg rounded-lg font-bold">Buy {{selectedSeats.length}} tickets • {{ selectedSeats.length*1500}} FCFA</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div [ngClass]="!isLoading?'invisible':''" class="hidden h-screen w-screen bg-[#0A1445]">
+  <div class="absolute m-auto">
+    <img src="../../assets/images/loader.gif" alt="loader">
   </div>
 </div>

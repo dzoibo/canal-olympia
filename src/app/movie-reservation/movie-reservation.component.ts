@@ -9,8 +9,9 @@ import { TestData } from '../data';
 })
 export class MovieReservationComponent  implements OnInit {
   isExpandedSeat=false;
-  seats: { row: number; columns: { id: number; state: string; }[]; }[]=[];
+  seats: { row: number; columns: { id: number; state: string; position:number  }[]; }[]=[];
   selectedSeats: {row: number, column: number}[]=[]
+  isLoading=false;
 
   constructor(
     private location: Location
@@ -31,7 +32,7 @@ export class MovieReservationComponent  implements OnInit {
   reserveSeat(rowIndex: number, columnIndex: number){ 
     const seat ={
       row: this.seats[rowIndex].row,
-      column: this.seats[rowIndex].columns[columnIndex].id
+      column: this.seats[rowIndex].columns[columnIndex].position
     }
     const index= this.selectedSeats.findIndex(item=>item.column===seat.column && item.row===seat.row);
     if(index>=0){
@@ -43,4 +44,10 @@ export class MovieReservationComponent  implements OnInit {
     }
   }
 
+  payTicket(){
+    this.isLoading=true;
+    setTimeout(() => {
+      this.isLoading=false;
+    }, 500);
+  }
 }

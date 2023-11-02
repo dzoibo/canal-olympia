@@ -36,10 +36,10 @@
 
 #seats{
     display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(11, 1fr);
     gap: 8px;
     font-family: 'IBM Plex Sans', sans-serif;
+    position: relative;
+    z-index: 10px;
 }
 #light{
     fill: linear-gradient(181deg, rgba(255, 255, 255, 0.10) 2.57%, rgba(31, 38, 51, 0.00) 93.2%);
