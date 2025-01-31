@@ -1,6 +1,86 @@
-import { scheduled } from "rxjs"
 
 export class TestData{
+    static category =[{
+        "genres": [
+      {
+        "id": 28,
+        "name": "Action"
+      },
+      {
+        "id": 12,
+        "name": "Adventure"
+      },
+      {
+        "id": 16,
+        "name": "Animation"
+      },
+      {
+        "id": 35,
+        "name": "Comedy"
+      },
+      {
+        "id": 80,
+        "name": "Crime"
+      },
+      {
+        "id": 99,
+        "name": "Documentary"
+      },
+      {
+        "id": 18,
+        "name": "Drama"
+      },
+      {
+        "id": 10751,
+        "name": "Family"
+      },
+      {
+        "id": 14,
+        "name": "Fantasy"
+      },
+      {
+        "id": 36,
+        "name": "History"
+      },
+      {
+        "id": 27,
+        "name": "Horror"
+      },
+      {
+        "id": 10402,
+        "name": "Music"
+      },
+      {
+        "id": 9648,
+        "name": "Mystery"
+      },
+      {
+        "id": 10749,
+        "name": "Romance"
+      },
+      {
+        "id": 878,
+        "name": "Science Fiction"
+      },
+      {
+        "id": 10770,
+        "name": "TV Movie"
+      },
+      {
+        "id": 53,
+        "name": "Thriller"
+      },
+      {
+        "id": 10752,
+        "name": "War"
+      },
+      {
+        "id": 37,
+        "name": "Western"
+      }
+    ]
+    }]
+
     static slideMovies=[{
         id:1,
         url:'../../assets/images/movies/01paw Patrol.png',
@@ -39,85 +119,130 @@ export class TestData{
     }
     ]
 
-    static scheduledMovies=[{
-        id:1,
-        name:'Paw patrol',
-        time:'02h08',
-        type:'Science-fiction',
-        url:'../../assets/images/movies/01paw Patrol.png',
-    },{
-        id:2,
-        name:'Expendables 4',
-        time:'02h08',
-        type:'Adventure',
-        url:'../../assets/images/movies/Imageexpandables.png',
-    },{
-        id:3,
-        name:'Aya de Youpougon',
-        time:'12h00',
-        type:'Animation',
-        url:'../../assets/images/movies/ImageAya de You.png',
-    },{
-        id:4,
-        name:'Wish, Ashia et la bonne étoile',
-        time:'18h10',
-        type:'Action',
-        url:'../../assets/images/movies/Imagewish.png',
-    },{
-        id:5,
-        name:'Wish, Ashia et la bonne étoile',
-        time:'20h00',
-        type:'Wonka',
-        url:'../../assets/images/movies/wonka',
-    },{
-
-        id:6,
-        name:'Five Nights',
-        time:'12h10',
-        type:'Action',
-        url:'../../assets/images/movies/Imagefive night.png',
-    }
-    ]
-    static locations=[
-        {
-            id: 2,
-            name: 'REBERO, Kigali Rwanda'
-        },
-        {
-            id: 10,
-            name: 'Yaoundé 1, Yaoundé Cameroun'
-        },
+    static scheduledMovies = [
         {
             id: 1,
-            name: 'Bessengue, Douala Cameroun'
+            name: 'Paw Patrol',
+            time: '02h08',
+            type: 'Science-fiction',
+            url: '../../assets/images/movies/01paw Patrol.png',
+            details: {
+                synopsis: 'A team of heroic puppies saves their town while facing new challenges.',
+                certificate: 'All audiences',
+                runtime: '88 min',
+                releaseDate: '2023-09-29',
+                genre: 'Animation, Adventure',
+                director: 'Cal Brunker',
+                cast: 'Mckenna Grace, Marsai Martin, Ron Pardo',
+                imdg: 7.8,
+                Kinopoisk: 8.2
+            }
+        },
+        {
+            id: 2,
+            name: 'Expendables 4',
+            time: '02h08',
+            type: 'Adventure',
+            url: '../../assets/images/movies/Imageexpandables.png',
+            details: {
+                synopsis: 'The Expendables team returns for another explosive mission.',
+                certificate: 'Rated R',
+                runtime: '103 min',
+                releaseDate: '2023-09-22',
+                genre: 'Action, Adventure',
+                director: 'Scott Waugh',
+                cast: 'Jason Statham, Sylvester Stallone, Dolph Lundgren',
+                imdg: 6.5,
+                Kinopoisk: 7.1
+            }
+        },
+        {
+            id: 3,
+            name: 'Aya of Yop City',
+            time: '12h00',
+            type: 'Animation',
+            url: '../../assets/images/movies/ImageAya de You.png',
+            details: {
+                synopsis: 'In the 1970s, Aya lives in Youpougon, a working-class neighborhood of Abidjan.',
+                certificate: 'All audiences',
+                runtime: '84 min',
+                releaseDate: '2013-07-17',
+                genre: 'Animation, Comedy, Drama',
+                director: 'Marguerite Abouet, Clément Oubrerie',
+                cast: 'Aïssa Maïga, Tatiana Rojo, Tella Kpomahou',
+                imdg: 8.1,
+                Kinopoisk: 8.4
+            }
         },
         {
             id: 4,
-            name: 'WOLOGUEDE, Cotonou BENIN'
+            name: 'Wish, Ashia and the Lucky Star',
+            time: '18h10',
+            type: 'Action',
+            url: '../../assets/images/movies/Imagewish.png',
+            details: {
+                synopsis: 'A young girl discovers a magical power that could change her destiny.',
+                certificate: 'All audiences',
+                runtime: '95 min',
+                releaseDate: '2023-11-22',
+                genre: 'Animation, Fantasy',
+                director: 'Chris Buck, Fawn Veerasunthorn',
+                cast: 'Ariana DeBose, Chris Pine, Alan Tudyk',
+                imdg: 7.3,
+                Kinopoisk: 7.9
+            }
         },
         {
             id: 5,
-            name: 'POPO, Braazaville Congo'
+            name: 'Wonka',
+            time: '20h00',
+            type: 'Fantasy',
+            url: '../../assets/images/movies/wonka',
+            details: {
+                synopsis: 'The story of young Willy Wonka and his encounter with the Oompa Loompas.',
+                certificate: 'All audiences',
+                runtime: '116 min',
+                releaseDate: '2023-12-15',
+                genre: 'Fantasy, Adventure',
+                director: 'Paul King',
+                cast: 'Timothée Chalamet, Hugh Grant, Olivia Colman',
+                imdg: 8.5,
+                Kinopoisk: 9.0
+            }
         },
         {
             id: 6,
-            name: 'KALOUM, Conakry Guinée'
-        },
-        {
-            id:7,
-            name:'GOGOPE, Lomé Togo'
-        },
-        {
-            id:8,
-            name: 'MIDE, Lomé Togo'
-        },
-        {
-            id:9,
-            name:'Teranga, Dakar Sénégal'
+            name: 'Five Nights at Freddy’s',
+            time: '12h10',
+            type: 'Action',
+            url: '../../assets/images/movies/Imagefive night.png',
+            details: {
+                synopsis: 'A security guard discovers the terrifying secrets of an abandoned restaurant.',
+                certificate: 'Rated PG-13',
+                runtime: '110 min',
+                releaseDate: '2023-10-27',
+                genre: 'Horror, Thriller',
+                director: 'Emma Tammi',
+                cast: 'Josh Hutcherson, Matthew Lillard, Elizabeth Lail',
+                imdg: 6.9,
+                Kinopoisk: 7.5
+            }
         }
-
-        
-    ]
+    ];
+    
+    static locations = [
+        { id: 1, name: 'Yaoundé, Cameroun' },
+        { id: 2, name: 'Libreville, Gabon' },
+        { id: 3, name: 'Bangui, Centrafrique' },
+        { id: 4, name: 'Brazzaville, Congo' },
+        { id: 5, name: 'Kinshasa, RDC' },
+        { id: 6, name: 'N’Djamena, Tchad' },
+        { id: 7, name: 'Malabo, Guinée Équatoriale' },
+        { id: 8, name: 'Luanda, Angola' },
+        { id: 9, name: 'São Tomé, São Tomé-et-Principe' },
+        { id: 10, name: 'Kigali, Rwanda' }
+    ];
+    
 
     static planningList=[
     {

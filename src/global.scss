@@ -49,7 +49,7 @@
 }
 
 .button-primary{
-    background: linear-gradient(180deg,#ff114b,#bc002e);
+    background: linear-gradient(180deg, theme('colors.mainyellow'), theme('colors.secondyellow'));
     display: flex;
     align-items: center;
     justify-content: center;
