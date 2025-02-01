@@ -115,7 +115,7 @@
           </svg>
         </div>
         <div class="m-auto p-2" *ngIf="searchResultMovies.length===0"> No movie </div>
-        <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 mb-16">
+        <div class="grid-auto-rows-auto grid gap-4 grid-cols-2  sm:grid-cols-3 mb-16">
           <div (click)="showMoviesDetail(movie)"  class="relative h-[280px] pb-2" *ngFor="let movie of searchResultMovies">
             <app-movie-card [movie]="movie"></app-movie-card>
           </div>
@@ -125,8 +125,8 @@
 
     <div  [ngClass]="currentList==='new'?'hidden':'block'" class="px-4" >
       <div *ngFor="let type of types" class="w-full border-b border-slate-500 my-4">
-        <ion-label class="text-sm font-normal text-slate-500 mb-1 block">{{type}}</ion-label>
-        <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 pb-4">
+        <ion-label class="text-sm font-normal text-slate-500 mb-2 block">{{type}}</ion-label>
+        <div class="grid-auto-rows-auto grid gap-4 grid-cols-2 sm:grid-cols-3 pb-2">
           <div (click)="showMoviesDetail(searchResultMovie)" 
               class="relative h-[280px]" 
               *ngFor="let searchResultMovie of getMoviesByType(type)">
