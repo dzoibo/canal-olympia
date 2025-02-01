@@ -1,0 +1,10 @@
+<div class="success-shadow overflow-hidden top-0 mb-2 rounded-lg ">
+  <ion-label class="success-shadow w-[58px] h-[28px] rounded-[4px] bg-mainyellow z-10 absolute right-1 top-1 text-xs flex items-center justify-center font-bold">
+    {{movie.time}}
+  </ion-label>
+  <img class=" shadown-down h-[230px] w-full" [src]="movie.url" [alt]="movie.url+' cover'">
+</div>
+<div class="text-left">
+  <ion-label class="text-white text-base font-bold mb-1">{{movie.name}}</ion-label> <br>
+  <ion-label class="text-sm font-normal text-[#637394]" *ngIf="showType">{{movie.type}}</ion-label>
+</div>

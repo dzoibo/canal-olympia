@@ -6,6 +6,7 @@ import { SwiperOptions } from 'swiper/types';
 import { IonInput } from '@ionic/angular';
 import { MoviesService } from '../services/movies.service';
 import { Router } from '@angular/router';
+import { Movies, ScheduledMovies, Specifities } from '../models';
 register();
 
 @Component({
@@ -15,12 +16,14 @@ register();
 })
 export class HomePage implements OnInit{
   @ViewChild('inputSearchMovie') inputSearchMovie!: IonInput; 
-  slideMovies: { id: number; url: string; name: string; language: string; category: string; type: string; resolution: string; }[] =[];
-  scheduledMovies: { id: number; name: string; time: string; type: string; url: string; }[]=[];
-  searchResultMovies: { id: number; name: string; time: string; type: string; url: string; }[]=[];
+  types : string[]=[];
 
-  locations: { id: number; name: string; }[]=[];
-  locationsSearchResult: { id: number; name: string; }[]=[];
+  slideMovies: Movies[]=[];
+  scheduledMovies: ScheduledMovies[]=[];
+  searchResultMovies: ScheduledMovies[]=[];
+
+  locations: Specifities[]=[];
+  locationsSearchResult: Specifities[]=[];
   bottomModal='';
   selectedLocation={
     id:1,
@@ -53,6 +56,7 @@ export class HomePage implements OnInit{
   };
   activeIndex=0;
   videoHasStarted= false;
+  currentList='new';
   
   constructor(
     private formBuilder: FormBuilder,
@@ -75,6 +79,9 @@ export class HomePage implements OnInit{
     const swiperEl:any = document.querySelector('swiper-container');
     Object.assign(swiperEl, this.slideOptions);
     swiperEl?.initialize();
+    // Extrait les types uniques du tableau scheduledMovies
+    this.types = [...new Set(this.scheduledMovies.map(movie => movie.type))];
+    console.log('types: ', this.types)
   }
 
   displayLogin(){
@@ -121,24 +128,28 @@ export class HomePage implements OnInit{
     this.resetTimeOut();
   }
 
- resetTimeOut(){
-  this.timeOut=59;
-  const timer=setInterval((()=>{
-    this.timeOut--
-    if(this.timeOut<1){
-      clearInterval(timer);
-    }
-  }),1000)
- }
+  resetTimeOut(){
+    this.timeOut=59;
+    const timer=setInterval((()=>{
+      this.timeOut--
+      if(this.timeOut<1){
+        clearInterval(timer);
+      }
+    }),1000)
+  }
+
+  setList(currentList: string){
+    this.currentList= currentList;
+  }
 
  searchLocation(event: any){
-  const searchKey = event.target!.value;
-  this.locationsSearchResult= this.locations.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
+    const searchKey = event.target!.value;
+    this.locationsSearchResult= this.locations.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
  }
 
  searchMovie(event: any){
-  const searchKey = event.target!.value;
-  this.searchResultMovies= this.scheduledMovies.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
+    const searchKey = event.target!.value;
+    this.searchResultMovies= this.scheduledMovies.filter(location=>location.name.toLowerCase().includes(searchKey.toLowerCase()));
  }
 
  onSlideChange(event: any){
@@ -146,23 +157,26 @@ export class HomePage implements OnInit{
  }
 
  displayHideSearchMovie(value: boolean){
-  this.isActiveSearchMovie=value;
-  document.getElementById('global-container')?.scrollTo({ top: 300, behavior: 'smooth' });
-  this.inputSearchMovie.setFocus();
-
+    this.isActiveSearchMovie=value;
+    document.getElementById('global-container')?.scrollTo({ top: 300, behavior: 'smooth' });
+    this.inputSearchMovie.setFocus();
  }
 
- backToTop(){
-  document.getElementById('global-container')?.scrollTo({ top: 0, behavior: 'smooth' });
- }
+  backToTop(){
+    document.getElementById('global-container')?.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
- showMoviesDetail(movies: any){
-  this.router.navigate(['movie-details']);
-  this.movieService.displayMovieDetails(movies);
- }
+  showMoviesDetail(movies: any){
+    this.router.navigate(['movie-details']);
+    this.movieService.displayMovieDetails(movies);
+  }
 
- startVideo() {
-  const video = document.querySelector('video') as HTMLVideoElement;
-  video.play();
-}
+  getMoviesByType(type: string) {
+    return this.searchResultMovies.filter(movie => movie.type === type);
+  }
+
+  startVideo() {
+    const video = document.querySelector('video') as HTMLVideoElement;
+    video.play();
+  }
 }

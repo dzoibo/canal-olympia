@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MovieReservationComponent } from '../movie-reservation/movie-reservation.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { MovieReservationComponent } from '../movie-reservation/movie-reservatio
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage,MovieReservationComponent,MovieDetailsComponent],
+  declarations: [HomePage,MovieReservationComponent,MovieDetailsComponent,MovieCardComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}
