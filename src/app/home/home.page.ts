@@ -14,6 +14,7 @@ register();
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit{
   @ViewChild('inputSearchMovie') inputSearchMovie!: IonInput; 
   types : string[]=[];
@@ -81,7 +82,6 @@ export class HomePage implements OnInit{
     swiperEl?.initialize();
     // Extrait les types uniques du tableau scheduledMovies
     this.types = [...new Set(this.scheduledMovies.map(movie => movie.type))];
-    console.log('types: ', this.types)
   }
 
   displayLogin(){
@@ -98,8 +98,7 @@ export class HomePage implements OnInit{
 
   login(){}  
 
-  showMoviePreview(id: number){
-  }
+  
 
   setLanguage(language: string){
     this.selectedLanguage=language;
@@ -175,8 +174,18 @@ export class HomePage implements OnInit{
     return this.searchResultMovies.filter(movie => movie.type === type);
   }
 
-  startVideo() {
-    const video = document.querySelector('video') as HTMLVideoElement;
-    video.play();
+  startVideo(movie:Movies) {
+    const videoElements = document.querySelectorAll('video');
+    videoElements.forEach((video: HTMLVideoElement) => {
+      if (!video.paused) {
+        video.pause();
+      }
+    });
+    const video = document.getElementById('movie'+movie.id) as HTMLVideoElement;
+    if (video.paused) {
+      video.play();
+    }else{
+      video.pause();
+    }
   }
 }

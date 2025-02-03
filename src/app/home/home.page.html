@@ -20,7 +20,10 @@
         <svg class="mr-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 1.99902C6.486 1.99902 2 6.48502 2 11.999C2 13.5925 2.38571 15.1715 3.11621 16.585L2.0459 20.4141C1.9254 20.8481 2.04819 21.3153 2.36719 21.6338C2.60469 21.8713 2.92495 22 3.25195 22C3.36445 22 3.47591 21.9851 3.58691 21.9541L7.41797 20.8848C8.83147 21.6148 10.4085 21.999 12 21.999C17.514 21.999 22 17.513 22 11.999C22 6.48502 17.514 1.99902 12 1.99902ZM10.25 6.5H13.25C13.664 6.5 14 6.8355 14 7.25V8.5C14 9.548 13.536 10.5317 12.7275 11.1992C12.588 11.3147 12.419 11.3711 12.251 11.3711C12.0345 11.3711 11.8199 11.2781 11.6719 11.0986C11.4079 10.7791 11.453 10.307 11.7725 10.043C12.235 9.66147 12.5 9.099 12.5 8.5V8H10.25C9.836 8 9.5 7.6645 9.5 7.25C9.5 6.8355 9.836 6.5 10.25 6.5ZM15.75 6.5C16.164 6.5 16.5 6.8355 16.5 7.25V9H17.25C17.664 9 18 9.3355 18 9.75C18 10.1645 17.664 10.5 17.25 10.5H16.5V13.75C16.5 14.1645 16.164 14.5 15.75 14.5C15.336 14.5 15 14.1645 15 13.75V7.25C15 6.8355 15.336 6.5 15.75 6.5ZM9.25 9C9.5605 9 9.8387 9.19097 9.9502 9.48047L12.4502 15.9805C12.5987 16.3675 12.4056 16.8017 12.0186 16.9502C11.9301 16.9842 11.84 17 11.75 17C11.4485 17 11.1643 16.8166 11.0498 16.5186L10.4658 15H8.03418L7.4502 16.5195C7.3012 16.9065 6.86595 17.0992 6.48145 16.9502C6.09495 16.8017 5.9013 16.3679 6.0498 15.9814L8.5498 9.48145C8.6613 9.19145 8.9395 9 9.25 9ZM9.25 11.8398L8.61133 13.5H9.88867L9.25 11.8398Z" fill="#637394"/>
         </svg>
-        <ion-text class="font-semibold" (click)="displayLanguageSelector()">Eng</ion-text>
+        <ion-text class="font-semibold" (click)="displayLanguageSelector()">
+          <span *ngIf="selectedLanguage==='en'">Eng</span>
+          <span *ngIf="selectedLanguage==='fr'">Fr</span>
+        </ion-text>
       </div>
       <button class="success-shadow ml-3 w-[76px] h-[40px] button-primary rounded-lg font-bold text-sm" (click)="displayLogin()"> Log in </button>
    </div>
@@ -45,11 +48,17 @@
     <div [ngClass]="currentList==='new'?'block':'hidden'">
       <div class="pl-4">
         <swiper-container (swiperslidechange)="onSlideChange($event)">
-          <swiper-slide (click)="startVideo()" class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index" (click)="showMoviePreview(movie.id)">
-            <div class="relative w-[300px] h-[486px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
+          <swiper-slide  class="rounded-[14.5px] pb-9" *ngFor="let movie of slideMovies; let i=index">
+            <div (click)="startVideo(movie)" class="relative w-[300px] h-[486px] flex items-end justify-start rounded-[14.5px] overflow-hidden cursor-pointer">
              
-              <video (pause)="videoHasStarted=false" [ngClass]="videoHasStarted===true?'z-50':''" (play)="videoHasStarted=true" controls [poster]="movie.url" title="trailler video" class="object-cover h-full w-full bg-black/[50%] rounded-[14.5px] inset-0 absolute">
-                <source src="../../assets/video/Expandables_trailer.mp4" type="video/mp4">
+              <video 
+                [id]="'movie'+movie.id" 
+                (pause)="movie.trailerIsPlaying=false"
+                [ngClass]="movie.trailerIsPlaying===true?'z-50':''"
+                (play)="movie.trailerIsPlaying=true" controls 
+                [poster]="movie.url" title="trailler video" 
+                class="object-cover h-full w-full bg-black/[50%] rounded-[14.5px] inset-0 absolute">
+                <source [src]="movie.trailerUrl" type="video/mp4">
                 Your device doesn't support reading video
               </video>
       
@@ -60,7 +69,7 @@
                 <ion-label class="text-xs font-normal" >{{movie.resolution}}</ion-label>
               </div>
   
-              <div class="bg-black/[0.3] rounded-[45.5px] w-9 h-9 flex justify-center items-center absolute top-2 right-2">
+              <div class="hidden bg-black/[0.3] rounded-[45.5px] w-9 h-9 justify-center items-center absolute top-2 right-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
                   <path d="M3.36362 10.4744C3.36362 9.72125 3.97414 9.11073 4.72725 9.11073H6.09089L10.6828 4.76995C11.0088 4.46173 11.5454 4.69288 11.5454 5.14156V17.7674C11.5454 18.2161 11.0088 18.4472 10.6828 18.139L6.09089 13.7982H4.72725C3.97414 13.7982 3.36362 13.1877 3.36362 12.4346V10.4744Z" fill="white"/>
                   <path d="M19.0454 8.72725L16.3182 11.4545M13.5909 14.1818L16.3182 11.4545M16.3182 11.4545L19.0454 14.1818M16.3182 11.4545L13.5909 8.72725" stroke="white" stroke-width="2.04545"/>
@@ -188,13 +197,13 @@
 
     <div [ngClass]="bottomModal==='language'?'showSheet':'hideSheet'" class="bg-darkblue text-white rounded-lg p-4 absolute w-full bottom-0">
         <ion-item class="cursor-pointer" (click)="setLanguage('fr')">
-          <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <svg  [ngClass]="selectedLanguage==='en'?'opacity-0':''"  class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
           </svg>
           <ion-text>Français</ion-text>
         </ion-item>
         <ion-item lines="none" class="cursor-pointer" (click)="setLanguage('en')">
-          <svg class="mr-2 opacity-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <svg [ngClass]="selectedLanguage==='en'?'':'opacity-0'" class="mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M17.9952 6.00043C17.7354 6.00818 17.4888 6.11676 17.3077 6.30317L9.01468 14.5961L5.72172 11.3032C5.62957 11.2072 5.5192 11.1306 5.39707 11.0778C5.27495 11.025 5.14351 10.9971 5.01047 10.9958C4.87743 10.9944 4.74546 11.0196 4.62228 11.0699C4.4991 11.1202 4.3872 11.1946 4.29312 11.2886C4.19904 11.3827 4.12468 11.4946 4.07439 11.6178C4.0241 11.741 3.9989 11.8729 4.00025 12.006C4.0016 12.139 4.02949 12.2705 4.08227 12.3926C4.13506 12.5147 4.21168 12.6251 4.30765 12.7172L8.30765 16.7172C8.4952 16.9047 8.74951 17.01 9.01468 17.01C9.27986 17.01 9.53417 16.9047 9.72172 16.7172L18.7217 7.71723C18.8662 7.57677 18.9649 7.39593 19.0049 7.19841C19.0448 7.00089 19.0242 6.7959 18.9456 6.61032C18.8671 6.42473 18.7343 6.2672 18.5647 6.15838C18.3951 6.04955 18.1966 5.99449 17.9952 6.00043Z" fill="#637394"/>
           </svg>
           <ion-text>English</ion-text>
